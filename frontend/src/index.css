@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom CSS for Aura design system */
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  
+  h1, h2 {
+    font-family: 'DM Serif Display', serif;
+  }
+  
+  body {
+    font-feature-settings: 'rlig' 1, 'calt' 1;
+  }
+}
+
+@layer components {
+  /* Aura Button Styles */
+  .btn-aura {
+    @apply btn border-none text-white hover:scale-105 transition-transform duration-200;
+    background: linear-gradient(120deg, #2D7A7D 0%, #E8A89A 50%, #A491D3 100%);
+  }
+  
+  .btn-aura:hover {
+    background: linear-gradient(120deg, #1a5a5c 0%, #c8887a 50%, #8471b3 100%);
+  }
+  
+  /* Aura Card Styles */
+  .card-aura {
+    @apply card bg-base-100 shadow-xl border border-base-300 hover:shadow-2xl transition-shadow duration-300;
+  }
+  
+  /* Gradient Text */
+  .text-gradient {
+    background: linear-gradient(120deg, #2D7A7D 0%, #E8A89A 50%, #A491D3 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Animated Background */
+  .bg-animated {
+    background: linear-gradient(120deg, #2D7A7D, #E8A89A, #A491D3, #2D7A7D);
+    background-size: 300% 300%;
+    animation: gradientShift 8s ease infinite;
+  }
+  
+  /* Camera Preview Styles */
+  .camera-preview {
+    @apply relative overflow-hidden rounded-2xl shadow-2xl;
+    aspect-ratio: 4/3;
+  }
+  
+  .camera-overlay {
+    @apply absolute inset-0 pointer-events-none;
+    background: radial-gradient(circle at center, transparent 40%, rgba(45, 122, 125, 0.1) 100%);
+  }
+  
+  /* Product Grid */
+  .product-grid {
+    @apply grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4;
+  }
+  
+  /* Loading Shimmer */
+  .shimmer {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+}
+
+@layer utilities {
+  /* Custom scrollbar */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: #E8A89A #F7FAFC;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-track {
+    @apply bg-base-200;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: #E8A89A;
+    @apply rounded-full;
+  }
+  
+  /* Glass morphism */
+  .glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* Animations */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Dark mode adjustments */
+[data-theme="aura-dark"] {
+  .text-gradient {
+    background: linear-gradient(120deg, #5B9A9C 0%, #C8887A 50%, #8471B3 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .bg-animated {
+    background: linear-gradient(120deg, #1a5a5c, #c8887a, #8471b3, #1a5a5c);
+    background-size: 300% 300%;
+  }
+}
+
+/* Responsive design helpers */
+@media (max-width: 768px) {
+  .camera-preview {
+    aspect-ratio: 3/4;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
