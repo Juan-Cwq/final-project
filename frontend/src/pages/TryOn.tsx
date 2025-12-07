@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import Webcam from 'react-webcam'
 import { useDropzone } from 'react-dropzone'
 import toast from 'react-hot-toast'
-import PreciseFaceDetection from '../components/PreciseFaceDetection'
+import AdvancedFaceDetection from '../components/AdvancedFaceDetection'
 import {
   CameraIcon,
   PhotoIcon,
@@ -194,7 +194,7 @@ const TryOn = () => {
                     )}
                   </div>
                 ) : activeCategory === 'makeup' ? (
-                  <PreciseFaceDetection showDebugInfo={true} />
+                  <AdvancedFaceDetection showDebugInfo={true} />
                 ) : (
                   <Webcam
                     ref={webcamRef}
@@ -209,7 +209,7 @@ const TryOn = () => {
                 {activeCategory === 'makeup' ? (
                   <div className="w-full text-center">
                     <p className="text-sm text-gray-600 mb-2">
-                      🎯 Precise feature detection! Only detects what's actually there.
+                      🎯 68-point facial landmarks! Professional-grade feature outlining like in the example.
                     </p>
                     <button
                       onClick={capture}

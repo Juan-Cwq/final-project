@@ -10,7 +10,7 @@ from fastapi.staticfiles import StaticFiles
 from dotenv import load_dotenv
 import os
 
-from app.api import tryon, health
+from app.api import tryon, health, insightface_detection
 from app.core.config import settings
 
 # Load environment variables
@@ -37,6 +37,7 @@ app.add_middleware(
 # Include routers
 app.include_router(health.router, prefix="/api", tags=["Health"])
 app.include_router(tryon.router, prefix="/api/tryon", tags=["Try-On"])
+app.include_router(insightface_detection.router, prefix="/api/landmarks", tags=["InsightFace Landmarks"])
 
 # Mount static files for uploads
 os.makedirs(settings.UPLOAD_DIR, exist_ok=True)
