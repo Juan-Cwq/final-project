@@ -140,8 +140,17 @@ const AdvancedFaceDetection: React.FC<AdvancedFaceDetectionProps> = ({ showDebug
     ctx.clearRect(0, 0, canvas.width, canvas.height)
 
     // Draw facial features with solid outlines like the example
-    detectedFaces.forEach((faceData, faceIndex) => {
+    detectedFaces.forEach((faceData) => {
       const landmarks = faceData.landmarks
+      
+      // Helper function to flip X coordinates for mirrored video
+      const flipPoint = (point: {x: number, y: number}) => ({
+        x: canvas.width - point.x,
+        y: point.y
+      })
+      
+      const flipPoints = (points: Array<{x: number, y: number}>) => 
+        points.map(flipPoint)
 
       // Helper function to draw and fill smooth shapes
       const drawFilledFeature = (points: Array<{x: number, y: number}>, fillColor: string, strokeColor: string, lineWidth: number) => {
@@ -200,17 +209,17 @@ const AdvancedFaceDetection: React.FC<AdvancedFaceDetectionProps> = ({ showDebug
         ctx.stroke()
       }
 
-      // Draw face outline - clean brown/tan stroke
+      // Draw face outline - clean brown/tan stroke (FLIPPED)
       if (landmarks.face_outline && landmarks.face_outline.length > 0) {
-        drawOutline(landmarks.face_outline, 'rgba(139, 90, 60, 0.8)', 3, true)
+        drawOutline(flipPoints(landmarks.face_outline), 'rgba(139, 90, 60, 0.8)', 3, true)
       }
 
-      // Draw eyes with fill and outline
+      // Draw eyes with fill and outline (FLIPPED)
       const eyes = [landmarks.left_eye, landmarks.right_eye]
       eyes.forEach((eye) => {
         if (eye && eye.length > 0) {
           drawFilledFeature(
-            eye,
+            flipPoints(eye),
             'rgba(200, 220, 240, 0.3)',  // Light blue fill
             'rgba(100, 130, 160, 0.9)',   // Darker blue outline
             2.5
@@ -218,27 +227,27 @@ const AdvancedFaceDetection: React.FC<AdvancedFaceDetectionProps> = ({ showDebug
         }
       })
 
-      // Draw eyebrows - solid brown strokes
+      // Draw eyebrows - solid brown strokes (FLIPPED)
       const eyebrows = [landmarks.left_eyebrow, landmarks.right_eyebrow]
       eyebrows.forEach((eyebrow) => {
         if (eyebrow && eyebrow.length > 0) {
-          drawOutline(eyebrow, 'rgba(101, 67, 33, 0.9)', 3, false)
+          drawOutline(flipPoints(eyebrow), 'rgba(101, 67, 33, 0.9)', 3, false)
         }
       })
 
-      // Draw nose outline
+      // Draw nose outline (FLIPPED)
       if (landmarks.nose_bridge && landmarks.nose_bridge.length > 0) {
-        drawOutline(landmarks.nose_bridge, 'rgba(139, 90, 60, 0.7)', 2, false)
+        drawOutline(flipPoints(landmarks.nose_bridge), 'rgba(139, 90, 60, 0.7)', 2, false)
       }
 
       if (landmarks.nose_tip && landmarks.nose_tip.length > 0) {
-        drawOutline(landmarks.nose_tip, 'rgba(139, 90, 60, 0.7)', 2, false)
+        drawOutline(flipPoints(landmarks.nose_tip), 'rgba(139, 90, 60, 0.7)', 2, false)
       }
 
-      // Draw mouth with fill and outline - like the example
+      // Draw mouth with fill and outline - like the example (FLIPPED)
       if (landmarks.outer_lip && landmarks.outer_lip.length > 0) {
         drawFilledFeature(
-          landmarks.outer_lip,
+          flipPoints(landmarks.outer_lip),
           'rgba(255, 200, 220, 0.4)',   // Light pink fill
           'rgba(180, 80, 100, 0.9)',    // Darker pink/red outline
           2.5
