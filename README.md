@@ -91,9 +91,10 @@ aura/
 
 ### MVP (Phase 1)
 - [x] Real-time camera access
-- [x] Clothing try-on (Mediapipe Pose)
-- [x] Glasses try-on (Haar Cascades)
-- [x] Makeup try-on (Dlib landmarks)
+- [x] Precise face detection with pixel-level analysis
+- [x] Advanced facial feature tracking (eyes, lips, nose, hair)
+- [x] Strict validation to prevent false positives
+- [x] Real-time makeup preview with accurate bounding boxes
 - [x] Snapshot capture
 - [x] Product catalog browsing
 
