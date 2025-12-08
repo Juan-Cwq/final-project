@@ -1,0 +1,15 @@
+<svg width="400" height="150" viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
+  <!-- Round pink sunglasses -->
+  <g fill="none" stroke="#d4af37" stroke-width="4">
+    <!-- Left lens -->
+    <circle cx="90" cy="80" r="50" fill="rgba(255,192,203,0.6)"/>
+    <!-- Right lens -->
+    <circle cx="310" cy="80" r="50" fill="rgba(255,192,203,0.6)"/>
+    <!-- Bridge -->
+    <line x1="140" y1="80" x2="260" y2="80" stroke-width="3"/>
+    <!-- Left temple -->
+    <line x1="40" y1="70" x2="15" y2="60" stroke-width="3"/>
+    <!-- Right temple -->
+    <line x1="360" y1="70" x2="385" y2="60" stroke-width="3"/>
+  </g>
+</svg>

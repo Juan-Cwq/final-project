@@ -4,6 +4,8 @@ import Webcam from 'react-webcam'
 import { useDropzone } from 'react-dropzone'
 import toast from 'react-hot-toast'
 import AdvancedFaceDetection from '../components/AdvancedFaceDetection'
+import GlassesTryOn from '../components/GlassesTryOn'
+import Professional3DGlasses from '../components/Professional3DGlasses'
 import {
   CameraIcon,
   PhotoIcon,
@@ -195,6 +197,8 @@ const TryOn = () => {
                   </div>
                 ) : activeCategory === 'makeup' ? (
                   <AdvancedFaceDetection showDebugInfo={true} />
+                ) : activeCategory === 'glasses' ? (
+                  <Professional3DGlasses showDebugInfo={false} />
                 ) : (
                   <Webcam
                     ref={webcamRef}
@@ -209,7 +213,7 @@ const TryOn = () => {
                 {activeCategory === 'makeup' ? (
                   <div className="w-full text-center">
                     <p className="text-sm text-gray-600 mb-2">
-                      🎯 68-point facial landmarks! Professional-grade feature outlining like in the example.
+                      🎯 106-point facial landmarks! Professional-grade feature outlining.
                     </p>
                     <button
                       onClick={capture}
@@ -218,6 +222,12 @@ const TryOn = () => {
                       <CameraIcon className="w-5 h-5 mr-2" />
                       Capture Look
                     </button>
+                  </div>
+                ) : activeCategory === 'glasses' ? (
+                  <div className="w-full text-center">
+                    <p className="text-sm text-gray-600 mb-2">
+                      🕶️ Professional 3D glasses try-on! Select from real Ray-Ban models.
+                    </p>
                   </div>
                 ) : (
                   <>
