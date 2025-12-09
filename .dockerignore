@@ -1,0 +1,25 @@
+# Backend
+backend/__pycache__
+backend/*.pyc
+backend/.pytest_cache
+backend/uploads/*
+backend/.env
+backend/venv
+backend/env
+
+# Frontend
+frontend/node_modules
+frontend/dist
+frontend/.vite
+frontend/.env
+frontend/.env.local
+
+# General
+.git
+.gitignore
+*.log
+*.md
+.DS_Store
+.vscode
+.idea
+glassarview
