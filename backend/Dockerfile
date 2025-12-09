@@ -1,4 +1,5 @@
 # Backend Dockerfile for Aura Virtual Try-On Platform
+# Updated for Render deployment
 FROM python:3.11-slim
 
 # Set working directory
