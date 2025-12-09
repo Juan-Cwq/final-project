@@ -6,6 +6,7 @@ import toast from 'react-hot-toast'
 import AdvancedFaceDetection from '../components/AdvancedFaceDetection'
 import GlassesTryOn from '../components/GlassesTryOn'
 import Professional3DGlasses from '../components/Professional3DGlasses'
+import VirtualClothingTryOn from '../components/VirtualClothingTryOn'
 import {
   CameraIcon,
   PhotoIcon,
@@ -169,45 +170,49 @@ const TryOn = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Camera/Upload Section */}
-          <div className="space-y-6">
-            <div className="card-aura p-6">
-              <h2 className="text-xl font-semibold mb-4 flex items-center">
-                <CameraIcon className="w-6 h-6 mr-2" />
-                Camera
-              </h2>
-              
-              <div className="camera-preview mb-4">
-                {capturedImage && activeCategory !== 'makeup' ? (
-                  <div className="relative">
-                    <img
-                      src={capturedImage}
-                      alt="Captured"
-                      className="w-full h-full object-cover rounded-xl"
-                    />
-                    {isProcessing && (
-                      <div className="absolute inset-0 bg-black/50 flex items-center justify-center rounded-xl">
-                        <div className="text-center text-white">
-                          <ArrowPathIcon className="w-8 h-8 animate-spin mx-auto mb-2" />
-                          <p>Processing...</p>
+        {/* Clothing category uses full-width layout */}
+        {activeCategory === 'clothing' ? (
+          <VirtualClothingTryOn showDebugInfo={false} />
+        ) : (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Camera/Upload Section */}
+            <div className="space-y-6">
+              <div className="card-aura p-6">
+                <h2 className="text-xl font-semibold mb-4 flex items-center">
+                  <CameraIcon className="w-6 h-6 mr-2" />
+                  Camera
+                </h2>
+                
+                <div className="camera-preview mb-4">
+                  {capturedImage && activeCategory !== 'makeup' ? (
+                    <div className="relative">
+                      <img
+                        src={capturedImage}
+                        alt="Captured"
+                        className="w-full h-full object-cover rounded-xl"
+                      />
+                      {isProcessing && (
+                        <div className="absolute inset-0 bg-black/50 flex items-center justify-center rounded-xl">
+                          <div className="text-center text-white">
+                            <ArrowPathIcon className="w-8 h-8 animate-spin mx-auto mb-2" />
+                            <p>Processing...</p>
+                          </div>
                         </div>
-                      </div>
-                    )}
-                  </div>
-                ) : activeCategory === 'makeup' ? (
-                  <AdvancedFaceDetection showDebugInfo={true} />
-                ) : activeCategory === 'glasses' ? (
-                  <Professional3DGlasses showDebugInfo={false} />
-                ) : (
-                  <Webcam
-                    ref={webcamRef}
-                    screenshotFormat="image/jpeg"
-                    className="w-full h-full object-cover rounded-xl"
-                    mirrored
-                  />
-                )}
-              </div>
+                      )}
+                    </div>
+                  ) : activeCategory === 'makeup' ? (
+                    <AdvancedFaceDetection showDebugInfo={true} />
+                  ) : activeCategory === 'glasses' ? (
+                    <Professional3DGlasses showDebugInfo={false} />
+                  ) : (
+                    <Webcam
+                      ref={webcamRef}
+                      screenshotFormat="image/jpeg"
+                      className="w-full h-full object-cover rounded-xl"
+                      mirrored
+                    />
+                  )}
+                </div>
 
               <div className="flex space-x-3">
                 {activeCategory === 'makeup' ? (
@@ -444,6 +449,7 @@ const TryOn = () => {
             </div>
           </div>
         </div>
+        )}
       </div>
     </div>
   )

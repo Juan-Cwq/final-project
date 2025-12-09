@@ -6,11 +6,15 @@ interface Professional3DGlassesProps {
   showDebugInfo?: boolean
 }
 
+// Available models from GlassesDB (free tier)
+// Full list: https://docs.google.com/spreadsheets/d/1MXMHEPIN09zUz_xCiP7d2CM-unbBTgU86aejkshfpwE
 const GLASSES_MODELS = [
   { id: 'rayban_aviator_or_vertFlash', name: 'Ray-Ban Aviator Gold' },
-  { id: 'rayban_wayfarer_black', name: 'Ray-Ban Wayfarer Black' },
-  { id: 'rayban_round_classic', name: 'Ray-Ban Round Classic' },
-  { id: 'oakley_holbrook', name: 'Oakley Holbrook' },
+  { id: 'rayban_aviator_or_bleuDegrade', name: 'Ray-Ban Aviator Blue' },
+  { id: 'rayban_aviator_or_marronDegrade', name: 'Ray-Ban Aviator Brown' },
+  { id: 'rayban_wayfarer_noir_brillant', name: 'Ray-Ban Wayfarer Black' },
+  { id: 'rayban_wayfarer_ecaille_brillant', name: 'Ray-Ban Wayfarer Tortoise' },
+  { id: 'rayban_round_or_roseFlash', name: 'Ray-Ban Round Rose Gold' },
 ]
 
 const Professional3DGlasses: React.FC<Professional3DGlassesProps> = ({ showDebugInfo = false }) => {
@@ -167,14 +171,14 @@ const Professional3DGlasses: React.FC<Professional3DGlassesProps> = ({ showDebug
           <h3 className="text-white text-sm font-semibold mb-3 text-center">Select 3D Glasses Model</h3>
           
           {/* Model Selector */}
-          <div className="grid grid-cols-2 gap-3 mb-3">
+          <div className="grid grid-cols-3 gap-2 mb-3">
             {GLASSES_MODELS.map(model => (
               <button
                 key={model.id}
                 onClick={() => changeGlassesModel(model.id)}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                className={`px-3 py-2 rounded-lg text-xs font-medium transition-all ${
                   selectedModel === model.id
-                    ? 'bg-blue-500 text-white'
+                    ? 'bg-blue-500 text-white shadow-lg'
                     : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
                 }`}
               >
