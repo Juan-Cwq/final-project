@@ -167,33 +167,29 @@ const Professional3DGlasses: React.FC<Professional3DGlassesProps> = ({ showDebug
 
       {/* Controls */}
       {!adjustMode && isInitialized && (
-        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/70 rounded-lg p-4 w-full max-w-2xl">
-          <h3 className="text-white text-sm font-semibold mb-3 text-center">Select 3D Glasses Model</h3>
-          
-          {/* Model Selector */}
-          <div className="grid grid-cols-3 gap-2 mb-3">
-            {GLASSES_MODELS.map(model => (
-              <button
-                key={model.id}
-                onClick={() => changeGlassesModel(model.id)}
-                className={`px-3 py-2 rounded-lg text-xs font-medium transition-all ${
-                  selectedModel === model.id
-                    ? 'bg-blue-500 text-white shadow-lg'
-                    : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
-                }`}
-              >
-                {model.name}
-              </button>
-            ))}
-          </div>
+        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/70 rounded-lg p-4 w-full max-w-md">
+          <div className="flex gap-3">
+            {/* Model Selector Dropdown */}
+            <select
+              value={selectedModel}
+              onChange={(e) => changeGlassesModel(e.target.value)}
+              className="flex-1 px-4 py-2 bg-gray-700 text-white rounded-lg text-sm font-medium border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              {GLASSES_MODELS.map(model => (
+                <option key={model.id} value={model.id}>
+                  {model.name}
+                </option>
+              ))}
+            </select>
 
-          {/* Adjust Button */}
-          <button
-            onClick={startAdjustMode}
-            className="w-full px-4 py-2 bg-purple-500 hover:bg-purple-600 text-white rounded-lg text-sm font-medium transition-colors"
-          >
-            🔧 Adjust Glasses Position
-          </button>
+            {/* Adjust Button */}
+            <button
+              onClick={startAdjustMode}
+              className="px-4 py-2 bg-purple-500 hover:bg-purple-600 text-white rounded-lg text-sm font-medium transition-colors whitespace-nowrap"
+            >
+              🔧 Adjust
+            </button>
+          </div>
         </div>
       )}
 
