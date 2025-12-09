@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState, useCallback } from 'react'
 import Webcam from 'react-webcam'
+import { API_BASE_URL } from '../config/api'
 
 interface FacialLandmarks {
   face_outline?: Array<{x: number, y: number}>
@@ -48,7 +49,7 @@ const AdvancedFaceDetection: React.FC<AdvancedFaceDetectionProps> = ({ showDebug
 
   const checkApiHealth = async () => {
     try {
-      const response = await fetch('http://localhost:8000/api/landmarks/health')
+      const response = await fetch(`${API_BASE_URL}/api/landmarks/health`)
       if (response.ok) {
         setApiStatus('connected')
       } else {
@@ -83,7 +84,7 @@ const AdvancedFaceDetection: React.FC<AdvancedFaceDetectionProps> = ({ showDebug
       const imageData = canvas.toDataURL('image/jpeg', 0.8).split(',')[1]
 
       // Send to advanced landmarks API
-      const response = await fetch('http://localhost:8000/api/landmarks/detect-landmarks', {
+      const response = await fetch(`${API_BASE_URL}/api/landmarks/detect-landmarks`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

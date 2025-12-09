@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useRef } from 'react'
 import { useDropzone } from 'react-dropzone'
 import toast from 'react-hot-toast'
+import { API_BASE_URL } from '../config/api'
 import {
   PhotoIcon,
   ArrowPathIcon,
@@ -88,8 +89,8 @@ const VirtualClothingTryOn: React.FC<VirtualClothingTryOnProps> = ({ showDebugIn
       formData.append('garment_type', 'jacket')
 
       // Call backend API
-      console.log('📡 Calling backend API: http://localhost:8000/api/tryon/virtual-clothing')
-      const response = await fetch('http://localhost:8000/api/tryon/virtual-clothing', {
+      console.log(`📡 Calling backend API: ${API_BASE_URL}/api/tryon/virtual-clothing`)
+      const response = await fetch(`${API_BASE_URL}/api/tryon/virtual-clothing`, {
         method: 'POST',
         body: formData
       })
