@@ -18,13 +18,16 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements first for better caching
-COPY requirements.txt .
+COPY requirements.txt ./requirements.txt
 
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy application code
 COPY . .
+
+# Verify main.py exists
+RUN ls -la main.py || echo "Warning: main.py not found"
 
 # Create uploads directory
 RUN mkdir -p uploads
